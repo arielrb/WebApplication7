@@ -1,0 +1,58 @@
+﻿@page
+@model WebApplication7.Pages.Tareas.editarModel
+@{
+    ViewData["Title"] = "EditarTareas";
+}
+<div class="card-body">
+            <!--Formularios de recepcion de datos-->
+    <form method="post">
+                    <!--Formulario oculto para ID, necesario para reconocer le contexto-->
+                    <input type="hidden" asp-for="TareaEditable.TareaId" />
+        <div class="container" style="padding:30px">
+            <div class="form-group">
+                <label asp-for="TareaEditable.Titulo"></label>
+            </div>
+            <div>
+                <input asp-for="TareaEditable.Titulo" class="form-control" />
+            </div>
+            <span asp-validation-for="TareaEditable.Titulo" class="text-danger" />
+        </div>
+        <div class="container" style="padding:30px">
+            <div class="form-group">
+                <label asp-for="TareaEditable.CategoriaID"></label>
+            </div>
+            <div>
+                <input asp-for="TareaEditable.CategoriaID" class="form-control" />
+            </div>
+            <span asp-validation-for="TareaEditable.CategoriaID" class="text-danger" />
+        </div>
+        <div class="container" style="padding:30px">
+            <div class="form-group">
+                <label asp-for="TareaEditable.Descripcion"></label>
+            </div>
+            <div>
+                <input asp-for="TareaEditable.Descripcion" class="form-control" />
+            </div>
+            <span asp-validation-for="TareaEditable.Descripcion" class="text-danger" />
+        </div>
+        <div class="container" style="padding:30px">
+            <div class="form-group">
+                <label asp-for="TareaEditable.EstadoTarea"></label>
+            </div>
+            <div>
+                <input asp-for="TareaEditable.EstadoTarea" class="form-control" />
+            </div>
+            <span asp-validation-for="TareaEditable.EstadoTarea" class="text-danger" />
+        </div>
+                        <!--Botones para enviar los datos y volver al listado-->
+
+        <div class="container" style="padding:30px">
+            <div class="form-group">
+                <input type="submit" value="editar" class="btn btn-success form-control" />
+            </div>
+            <div>
+                <a asp-page="Index" class="btn btn-light"> Volver al listado </a>
+            </div>
+        </div> 
+    </form>
+</div>

@@ -1,0 +1,57 @@
+﻿@page
+@model WebApplication7.Pages.Tareas.IndexModel
+@{
+    ViewData["Title"] = "Tareas!";
+}
+<h1> Hello tareas World!</h1>
+<div>
+    <h4>¿Queres crear una nueva tarea?</h4>
+    <a asp-page="guardar" class="btn btn-primary">Crear</a>
+</div>
+
+<div class="card-body">
+                <!--Formularios para eliminar datos-->
+    <form method="post">
+    @if (Model.TareasListadas.Count() > 0)
+    {
+        <!--Muestra en una tabla los nombres de las columnas-->
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>@Html.DisplayNameFor(m => m.TareasListadas.First().TareaId)</th>
+                <th>@Html.DisplayNameFor(m => m.TareasListadas.First().Titulo)</th>
+                <th>@Html.DisplayNameFor(m => m.TareasListadas.First().CategoriaID)</th>
+                <th>@Html.DisplayNameFor(m => m.TareasListadas.First().Descripcion)</th>
+                <th>@Html.DisplayNameFor(m => m.TareasListadas.First().EstadoTarea)</th>
+                <th>@Html.DisplayNameFor(m => m.TareasListadas.First().FechaCreacion)</th>
+                <th>Acciones</th>
+            </tr>
+        <!--Muestra en la misma tabla los resgistros de las columnas-->
+            @foreach (var item in Model.TareasListadas)
+            {
+                <tr>
+                <td> @Html.DisplayFor(m => item.TareaId)</td>
+                <td> @Html.DisplayFor(m => item.Titulo)</td>
+                <td> @Html.DisplayFor(m => item.CategoriaID)</td>
+                <td> @Html.DisplayFor(m => item.Descripcion)</td>
+                <td> @Html.DisplayFor(m => item.EstadoTarea)</td>
+                <td> @Html.DisplayFor(m => item.FechaCreacion)</td>
+                <td>
+                            <!--Acciones de edicion y eliminado-->
+
+                    <a asp-route-id="@item.TareaId" 
+                    asp-page="editar" 
+                    class="btn btn-secondary">Editar</a>
+
+                    <button asp-page-handler="eliminar" 
+                    asp-route-id="@item.TareaId" 
+                    class="btn btn-danger"
+                    onclick="return confirm('¿Eliminar el registro?')">Eliminar</button>
+
+                </td>
+                </tr>
+            }
+        </table>
+        <!--Respuesta por defecto-->
+    } else {<p> No hay tareas aun!</p>}
+    </form>
+</div>
